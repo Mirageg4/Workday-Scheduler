@@ -4,6 +4,7 @@ $(function () {
     const currentDay = moment().format("dddd, MMMM Do YYYY");
     
     // Variable - Timeblocks for Day
+    // TODO - Retrieve current hour as a number
     const hour = moment().format("H A");
 
     // DONE - Fill the '#currentDay' container with the currentDay variable
@@ -12,38 +13,77 @@ $(function () {
     // DONE - Retrieve stored tasks and parse from local storage
     const tasks = JSON.parse(
         localStorage.getItem("tasks")
-    )
+    ) || {}
 
     // TODO - Create timeblocks and populate with any existing stored task and color appropriately based on current time
     // ------------------------------------------------------------------------
 
-    // TODO - Run a for-loop and create timeblocks for every hour from 9 - 5
-    const startHour = 9;
-    for (let i = 0; i < 9; i++) {
+    // DONE - Run a for-loop and create timeblocks for every hour from 9 - 5
+    const timeData = [
+        {
+            label: "9am", // 12-hour formatted time
+            value: 9 // 24-hour Military time
+        },
+        {
+            label: "10am", // 12-hour formatted time
+            value: 10 // 24-hour Military time
+        },
+        {
+            label: "11am", // 12-hour formatted time
+            value: 11 // 24-hour Military time
+        },
+        {
+            label: "12pm", // 12-hour formatted time
+            value: 12 // 24-hour Military time
+        },
+        {
+            label: "1pm", // 12-hour formatted time
+            value: 13 // 24-hour Military time
+        },
+        {
+            label: "2pm", // 12-hour formatted time
+            value: 14 // 24-hour Military time
+        },
+        {
+            label: "3pm", // 12-hour formatted time
+            value: 15 // 24-hour Military time
+        },
+        {
+            label: "4pm", // 12-hour formatted time
+            value: 16 // 24-hour Military time
+        },
+        {
+            label: "5pm", // 12-hour formatted time
+            value: 17 // 24-hour Military time
+        }
+    ]
+    for (let i = 0; i < timeData.length; i++) {
         // The hour of this timeblock
-        const timeBlockHour = startHour + i;
+        const timeBlockHour = timeData[i].value
     
-        // TODO - Contains current time, textarea for input (given the .past, .present, .future as appropriate), and the save button (.saveButton)
-        const timeBlockTemplate = `<p>${timeBlockHour}</p>`
+        // TESTING - Contains current time, textarea for input (given the .past, .present, .future as appropriate), and the save button (.saveBtn)
+        let timeClass;
+        if (hour > timeBlockHour) timeClass = "future"
+        else if(hour === timeBlockHour) timeClass = "present"
+        else timeClass = "past"
 
+        
         // DONE - Put timeblocks into the container
         $("#timeblock-container").append(timeBlockTemplate)
 
     }
 
     // TODO - Add a click event istener to all save buttons to stringify and store the entered task into local storage
-    $(".saveButton").on("click", function () {
-        $("#saveButton").click();
-        $("timeBlockHour").val();
-        timeBlockHour.setItem("saveButton", JSON.stringify(tasks));
+    $(".saveBtn").on("click", function () {
 
         // TODO - Get current value from 'this' timeblock's textarea element
-        $(this.timeBlockHour("p").val());
-       
-        // TODO - Push the task into the 'tasks' array
-        tasks.push([]);
+        
 
-        // TODO - Store the 'tasks' array into local storage
+        // DONE - Set the task into the 'tasks' object
+        tasks[timeBlockHour] = taskDescription;
+
+        // DONE - Store the 'tasks' object into local storage
         localStorage.setItem("tasks", JSON.stringify(tasks));
     })
+
 });
