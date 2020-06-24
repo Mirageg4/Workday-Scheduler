@@ -20,7 +20,7 @@
 <p>Live Link: <a href="https://mirageg4.github.io/Workday-Scheduler/.">Workday Scheduler</a></p>
 <p>Github: <a href="https://github.com/Mirageg4/Workday-Scheduler/.">Workday Scheduler Repo</a></p>
 <hr>
-<img src ="./ScreenShot.png/."/>
+<img src ="./ScreenShot.png"/>
 <hr>              
 <p>License: Project is licensed under the MIT License. 
 See <a href ="LICENSE.md">LICENSE</a> file for details.
