@@ -67,17 +67,26 @@ $(function () {
         else if(hour === timeBlockHour) timeClass = "present"
         else timeClass = "past"
 
-        
+        const timeBlockTemplate = `
+        <div class='time-block row'>
+            <span class='hour'>${timeData[i].label}</span>
+            <textarea class='description ${timeClass}'>${tasks[timeData[i].label] || ""}</textarea>
+            <button id='${timeData[i].label}' class='saveBtn'>
+            <i class="fas fa-save"></i>
+            </button>
+        </div>
+        `
         // DONE - Put timeblocks into the container
         $("#timeblock-container").append(timeBlockTemplate)
 
     }
 
-    // TODO - Add a click event istener to all save buttons to stringify and store the entered task into local storage
+    // DONE - Add a click event istener to all save buttons to stringify and store the entered task into local storage
     $(".saveBtn").on("click", function () {
 
-        // TODO - Get current value from 'this' timeblock's textarea element
-        
+        // DONE - Get current value from 'this' timeblock's textarea element
+        const taskDescription = $($(this).siblings("textarea")).val();
+        const timeBlockHour = this.id
 
         // DONE - Set the task into the 'tasks' object
         tasks[timeBlockHour] = taskDescription;
