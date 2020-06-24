@@ -33,13 +33,15 @@ $(function () {
 
     // TODO - Add a click event istener to all save buttons to stringify and store the entered task into local storage
     $(".saveButton").on("click", function () {
-        $(timeBlockHour).val();
+        $("timeBlockHour").val();
+        $("#saveButton").click();
+        timeBlockHour.setItem("saveButton", JSON.stringify(tasks));
 
         // TODO - Get current value from 'this' timeblock's textarea element
-        this.timeBlockHour("p").val();
+        $(this.timeBlockHour("p").val());
        
         // TODO - Push the task into the 'tasks' array
-        tasks.push()
+        $tasks.push()
 
         // TODO - Store the 'tasks' array into local storage
         localStorage.setItem("tasks", JSON.stringify(tasks));
