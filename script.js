@@ -15,9 +15,6 @@ $(function () {
         localStorage.getItem("tasks")
     ) || {}
 
-    // TODO - Create timeblocks and populate with any existing stored task and color appropriately based on current time
-    // ------------------------------------------------------------------------
-
     // DONE - Run a for-loop and create timeblocks for every hour from 9 - 5
     const timeData = [
         {
@@ -62,10 +59,47 @@ $(function () {
         const timeBlockHour = timeData[i].value
     
         // TESTING - Contains current time, textarea for input (given the .past, .present, .future as appropriate), and the save button (.saveBtn)
-        let timeClass;
-        if (hour > timeBlockHour) timeClass = "future"
-        else if(hour === timeBlockHour) timeClass = "present"
-        else timeClass = "past"
+        // add class to textarea element.
+        
+        //let hour = moment(timeBlockHour, "H A");
+
+       let timeClass = "";
+
+        if (hour > timeBlockHour) timeClass = "future";
+        else if(hour === timeBlockHour) timeClass = "present";
+        else timeClass = "past";
+        
+        $("#textarea").addClass("timeClass");
+        
+       
+        //$("#textarea").addClass(timeClass);
+
+        /*let timeClass = function(){
+        
+        if (hour > timeBlockHour) timeClass = "future";
+        $(this).addClass("future");
+        
+        else if(hour === timeBlockHour) timeClass = "present";
+        $(this).addClass("present");
+        
+        else timeClass = "past";
+        $(this).addClass("past");
+        */
+
+    
+        /*if (hour > timeBlockHour) {
+                timeClass = "future";
+                $("#textarea").addClass("future");
+
+                } else if(hour === timeBlockHour) {
+                    timeClass = "present";
+                $("#textarea").addClass("present");
+
+                } else {timeClass = "past";
+                //$("#textarea").addClass(past);
+                }
+               */
+
 
         const timeBlockTemplate = `
         <div class='time-block row'>
