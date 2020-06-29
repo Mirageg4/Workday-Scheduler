@@ -5,7 +5,7 @@ $(function () {
     
     // Variable - Timeblocks for Day
     // TODO - Retrieve current hour as a number
-    const hour = moment().format("H A");
+    const hour = parseInt(moment().format("H"));
 
     // DONE - Fill the '#currentDay' container with the currentDay variable
     $("#currentDay").text(currentDay)
@@ -61,44 +61,15 @@ $(function () {
         // TESTING - Contains current time, textarea for input (given the .past, .present, .future as appropriate), and the save button (.saveBtn)
         // add class to textarea element.
         
-        //let hour = moment(timeBlockHour, "H A");
+       
 
        let timeClass = "";
 
-        if (hour > timeBlockHour) timeClass = "future";
+        if (hour < timeBlockHour) timeClass = "future";
         else if(hour === timeBlockHour) timeClass = "present";
         else timeClass = "past";
         
         $("#textarea").addClass("timeClass");
-        
-       
-        //$("#textarea").addClass(timeClass);
-
-        /*let timeClass = function(){
-        
-        if (hour > timeBlockHour) timeClass = "future";
-        $(this).addClass("future");
-        
-        else if(hour === timeBlockHour) timeClass = "present";
-        $(this).addClass("present");
-        
-        else timeClass = "past";
-        $(this).addClass("past");
-        */
-
-    
-        /*if (hour > timeBlockHour) {
-                timeClass = "future";
-                $("#textarea").addClass("future");
-
-                } else if(hour === timeBlockHour) {
-                    timeClass = "present";
-                $("#textarea").addClass("present");
-
-                } else {timeClass = "past";
-                //$("#textarea").addClass(past);
-                }
-               */
 
 
         const timeBlockTemplate = `
